@@ -1,0 +1,68 @@
+
+
+// retrieve color from map with Sass ie. `color(primary, base)`
+@function color-root($color-name, $color-variant:null, $true-val:false) {
+  
+  // we need to return the color value
+  @if $true-val == true {
+    // color variant is optional
+    @if ($color-variant != null) {
+      // map inception, need two deep
+      @return map-get(map-get($scotch-colors,$color-name),$color-variant);
+
+    } @else {
+      // single-level color, one deep
+      @return map-get($scotch-colors,$color-name);
+
+    }
+  // if we're only returning the CSS4 variable
+  } @else {
+    // color variant is optional
+    @if ($color-variant != null) {
+      // map inception, need two names
+      @return var(#{$color-prefix}#{$color-name}-#{$color-variant});
+
+    } @else {
+      // single-level color, one name
+      @return var(#{$color-prefix}#{$color-name});
+
+    }
+  }
+}
+
+// define local variable
+@mixin var($name,$value) {
+  --#{$name}: $value;
+}
+// access any variable
+@function v($name) {
+  @return var(--#{$name});
+}
+
+/*=========================================================================
+   Example Code
+=========================================================================*/  
+/* 
+ * referencing our color variables with CSS 
+ */
+body {
+  // right here it's Sass tho
+  color: color-root(primary, base);
+  background-color: color-root(primary, base);
+  @include var(
+    new-primary, 
+    darken(
+      color-root(primary,base,true), 
+      5%
+    )
+  );
+    @include var(
+    new-btn,darken(
+      color-root(primary,base,true), 
+      5%
+    )
+  );
+
+  color: v(new-primary);
+  color: v(new-btn);
+}

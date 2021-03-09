@@ -1,0 +1,104 @@
+/*=========================================================================
+   Font Size function size
+=========================================================================*/ 
+@function rem($px) {
+  @return ($px / 16px) * 1rem;
+}
+@function rem-margin($px) {
+  @return ($px / 12px) * 1rem;
+}
+$fontSizes: (
+  h1   : rem(36px),
+  h2   : rem(24px),
+  h3   : rem(20px),
+  h4   : rem(16px),
+  h5   : rem(14px),
+  h6   : rem(12px)
+);
+$fontSizes-margin: (
+  h1   : rem(36px),
+  h2   : rem(24px),
+  h3   : rem(20px),
+  h4   : rem(16px),
+  h5   : rem(14px),
+  h6   : rem(12px)
+);
+@function fontSize($size) {
+  @if map-has-key($fontSizes, $size) {
+    @return map-get($fontSizes,$size)
+  } @else {
+    @error '$size is not valid, valid values are t1, t2, t3, normal, small, smaller';
+  }
+}
+
+
+
+
+
+
+
+
+/*=========================================================================
+   Example and use en dev
+=========================================================================*/  
+h1, .h1{
+ font-size: fontSize(h1);
+ margin-top: 0;
+ margin-bottom: margin-global(m3);
+ color: color-root(app, 2)
+}
+h2, .h2{
+ font-size: fontSize(h2);
+ margin-top: 0;
+ margin-bottom: margin-global(m3);
+ color: color-root(app, 2)
+}
+h3, .h3{
+ font-size: fontSize(h3);
+ margin-top: 0;
+ margin-bottom: margin-global(m3);
+ color: color-root(app, 2)
+}
+h4, .h4{
+ font-size: fontSize(h4);
+ margin-top: 0;
+ margin-bottom: margin-global(m4);
+ color: color-root(app, 2)
+}
+h5, .h5{
+ font-size: fontSize(h5);
+ margin-top: 0;
+ margin-bottom: margin-global(m5);
+ color: color-root(app, 2)
+}
+h6, .h6{
+ font-size: fontSize(h6);
+ margin-top: 0;
+ margin-bottom: margin-global(m5);
+ color: color-root(app, 2)
+}
+
+.f-1{
+ font-size: fontSize(h1) !important;
+
+}
+.f-2{
+ font-size: fontSize(h2) !important;
+
+}
+.f-3{
+ font-size: fontSize(h3) !important;
+
+}
+.f-4{
+ font-size: fontSize(h4) !important;
+
+}
+.f-5{
+ font-size: fontSize(h5) !important;
+
+}
+.f-6{
+ font-size: fontSize(h6) !important;
+
+}

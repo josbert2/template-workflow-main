@@ -1,0 +1,39 @@
+$scotch-color-key: 'base' !default;
+
+//Invisible
+$transparent:   rgba(255,255,255,0);
+
+$scotch-opacity: (
+  'light': 0.8, 
+  'dark': 0.4,
+  'null': 0.2,
+  'opacity': 0.1, 
+
+);
+
+@function scotch-color(
+  $name: 'primary',
+  $variant: $scotch-color-key,
+  $opacity: 1
+) {
+  $color: null;
+  
+  // Get the color spectrum
+  $color-spectrum: map-get($scotch-colors, $name);
+  
+  // Get the color variant
+  @if $color-spectrum {
+    $color: map-get($color-spectrum, $variant);
+  }
+  
+  // Get the alpha setting
+  $alpha: if(type-of($opacity) == 'number', $opacity, map-get($scotch-opacity, $opacity));
+  
+  // Set the alpha of the color
+  @if $alpha {
+    $color: rgba($color, $alpha);
+  }
+  
+  @return $color;
+}
+

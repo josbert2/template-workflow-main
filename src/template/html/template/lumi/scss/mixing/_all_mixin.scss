@@ -1,0 +1,483 @@
+
+// Alineamiento vertical-align: 
+@mixin ghostVerticalAlign(){
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%; width: .1px;
+  }
+}
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacity-ie: $opacity * 100;
+  filter: alpha(opacity = $opacity-ie); //IE8
+}
+//Padding mixin
+@mixin padding($top, $right, $bottom, $left) {
+  padding-top: $top;
+  padding-right: $right;
+  padding-bottom: $bottom;
+  padding-left: $left;
+}
+//Margin mixin
+@mixin margin($top, $right, $bottom, $left) {
+  margin-top: $top;
+  margin-right: $right;
+  margin-bottom: $bottom;
+  margin-left: $left;
+}
+
+
+
+@mixin tooltip-position($direction) {
+
+  $positionX: "";
+  $positionY: "";
+  $translateX: "";
+  $translateY: "";
+
+  @if $direction == 'ne' {
+    $positionX: left;
+    $positionY: top;
+    $translateX: 0;
+    $translateY: -100%;
+  } @else if $direction == 'n' {
+    $positionX: left;
+    $positionY: top;
+    $translateX: -50%;
+    $translateY: -100%;
+  } @else if $direction == 'nw' {
+    $positionX: right;
+    $positionY: top;
+    $translateX: 0;
+    $translateY: -100%;
+  } @else if $direction == 'w' {
+    $positionX: left;
+    $positionY: top;
+    $translateX: -100%;
+    $translateY: -50%;
+  } @else if $direction == 'e' {
+    $positionX: right;
+    $positionY: top;
+    $translateX: 100%;
+    $translateY: -50%;
+  } @else if $direction == 'sw' {
+    $positionX: right;
+    $positionY: bottom;
+    $translateX: 0;
+    $translateY: 100%;
+  } @else if $direction == 's' {
+    $positionX: left;
+    $positionY: bottom;
+    $translateX: -50%;
+    $translateY: 100%;
+  } @else if $direction == 'se'{
+    $positionX: left;
+    $positionY: bottom;
+    $translateX: 0;
+    $translateY: 100%;
+  }
+  // utility variables
+
+  $tooltip-body: '&:before';
+  $tooltip-arrow: '&:after';
+  // config variables
+  $tooltip-proximity: 5px;
+  $tooltip-triangle-height: 6px !default;
+  $tooltip-triangle-width: $tooltip-triangle-height * 2;
+
+  $positionXValue: 0;
+  $positionYValue: -($tooltip-triangle-height + $tooltip-proximity);
+  $trianglePositionXValue: 50%;
+  $trianglePositionYValue: $positionYValue;
+  $triangleDirection: down;
+
+  #{$tooltip-arrow} {
+    transform: translate3d(-50%, 0, 0);
+    @if ($positionX == 'right') {
+      transform: translate3d(50%, 0, 0);
+    }
+  }
+
+  // North direction
+  @if ($translateX == -50%) {
+    $positionXValue: 50%;
+  }
+
+  // East-West direction
+  @if ($translateY == -50%) {
+    $positionXValue: -($tooltip-triangle-height + $tooltip-proximity);
+    $positionYValue: 50%;
+    $trianglePositionXValue: -$tooltip-proximity;
+    $trianglePositionYValue: 50%;
+    $triangleDirection: left;
+    @if ($translateX == -100%) {
+      $triangleDirection: right;
+    }
+    #{$tooltip-arrow} {
+      transform: translate3d(#{$translateX}, #{$translateY}, 0);
+    }
+  }
+
+  // South direction
+  @if ($translateY == 100%) {
+    $triangleDirection: up;
+  }
+
+  $positionX-override: 'right';
+  @if ($positionX == 'right') {
+    $positionX-override: 'left';
+  }
+
+  $positionY-override: 'bottom';
+  @if ($positionY == 'bottom') {
+    $positionY-override: 'top';
+  }
+
+  #{$tooltip-body} {
+    #{$positionY}: $positionYValue;
+    #{$positionY-override}: auto;
+    #{$positionX}: $positionXValue;
+    #{$positionX-override}: auto;
+    transform: translate3d(#{$translateX}, #{$translateY}, 0);
+  }
+  #{$tooltip-arrow} {
+    @include triangle($triangleDirection, $tooltip-triangle-height, currentColor);
+    #{$positionY}: $trianglePositionYValue;
+    #{$positionY-override}: auto;
+    #{$positionX}: $trianglePositionXValue;
+    #{$positionX-override}: auto;
+  }
+}
+
+$tooltip-font-color-default : white !default;
+@mixin tooltip( $tooltip-data-attribute: 'data-tooltip',
+                $tooltip-width: 200px,
+                $tooltip-background-color: #0061c8,
+                $tooltip-font-color: $tooltip-font-color-default,
+                $fade-out-duration: 300ms,
+                $fade-in-delay: 300ms,
+                $tooltip-padding: 10px 15px
+) {
+  //config
+  // set the color automatically based on the tooltip background
+  @if lightness($tooltip-background-color) > 50% and not($tooltip-font-color == $tooltip-font-color-default) {
+    $tooltip-font-color: black;
+  }
+
+  position: relative; // can override this to absolute or fixed if necessary. Just can't be static
+
+  &:before, &:after {
+    opacity: 0;
+    z-index: 98;
+    transition: opacity $fade-out-duration, visibility 0ms linear $fade-out-duration; // delay visibility on fade out
+    pointer-events: none;
+    @include respondTo(smartphone) {
+      display: none; // tooltips are not yet mobile friendly, so we are just hiding them
+    }
+  }
+  &:before {
+    // tooltip body
+    content: attr(#{$tooltip-data-attribute});
+    position: absolute;
+    width: $tooltip-width;
+    padding: $tooltip-padding;
+    line-height: 18px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: normal;
+    white-space: normal;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    background-color: $tooltip-background-color;
+    color: $tooltip-font-color;
+  }
+  &:after {
+    // tooltip carrot
+    content: '';
+    color: $tooltip-background-color; // is for border-color to inherit using currentColor value
+  }
+
+  &:hover {
+    /* putting comment here so :hover is declared first by itself to fix ie10 bug with transitions on pseudo elements
+    - http://css-tricks.com/pseudo-element-animationstransitions-bug-fixed-in-webkit/ */
+    &:before, &:after {
+      opacity: 1;
+      pointer-events: all;
+      transition-delay: $fade-in-delay;
+      @include respondTo(smartphone) {
+        display: none;
+      }
+    }
+  }
+}
+//*
+//* tooltip classes.
+//*
+
+@mixin tooltipPositioningFactory($tooltip-class: 'tooltip') {
+  $directions: ne, n, nw, w, e, s, sw, se;
+  @each $direction in $directions {
+    .#{$tooltip-class}--#{$direction} {
+      @include tooltip-position($direction);
+    }
+  }
+}
+
+// Mixin notificacion
+@mixin alerted() {
+  &:before {
+    content: '';
+    position: absolute;
+    top: 6px; right: 6px;
+    height: 8px; width: 8px;
+    @include border-radius(10px);
+    background-color: gold;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    height: 20px; width: 20px;
+    @include border-radius(20px);
+    background-color: transparent;
+    border: solid gold;
+    border-width: 2px; // animates
+    @include box-sizing(border-box);
+    @include animation($name: alertMe);
+  }
+  @keyframes alertMe {
+  // -vendor prefixes omitted for brevity, but should be used in production
+  from {
+    border-width: 3px;
+    border-color: gold;
+  }
+  to {
+    border-width: 0;
+    border-color: rgba(gold, .1);
+  }
+}
+}
+
+
+// Texto truncado
+@mixin truncateText($overflow: ellipsis){
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: $overflow; // values are: clip, ellipsis, or a string
+}
+//Mixin de animation best
+@mixin animation($name, $duration: 1000ms, $iterations: infinite, $timing-function: ease, $delay: 0ms) {
+  // There is a FF bug that requires all time values to have units, even 0 !!!!!!
+  -webkit-animation: $name $duration $iterations $timing-function $delay;
+  -moz-animation: $name $duration $iterations $timing-function $delay;
+  -o-animation: $name $duration $iterations $timing-function $delay;
+  animation: $name $duration $iterations $timing-function $delay;
+}
+// Centrado absoluto
+@mixin ctr($axis: "both"){
+  position:absolute;
+  @if $axis == "y"{
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $axis == "x"{
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $axis == "both"{
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+// Placeholder input
+@mixin placeholder-color($color) {
+  &:-moz-placeholder {
+    color: $color;
+  }
+  &::-webkit-input-placeholder {
+    color: $color;
+  }
+  &.placeholder {
+    color: $color;
+  }
+}
+// Generador de grandiente 
+@mixin vertical-gradient($from, $to) {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $from), color-stop(100%, $to));
+  background: -webkit-linear-gradient(top, $from, $to);
+  background:    -moz-linear-gradient(top, $from, $to);
+  background:     -ms-linear-gradient(top, $from, $to);
+  background:      -o-linear-gradient(top, $from, $to);
+  background:   linear-gradient(to bottom, $from, $to);
+}
+
+// Click seleccion color
+@mixin selection($color) {
+  &::selection {
+    background: $color;
+  }
+  &::-moz-selection {
+    background: $color;
+  }
+}
+// Clearfix (No se para que sirve)
+@mixin clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
+}
+// Triangulo mixin border
+@mixin triangle($direction, $size: 0.375rem, $color: #222){
+  content: '';
+  display: block;
+  position: absolute;
+  height: 0; width: 0;
+  @if ($direction == 'up'){
+    border-bottom: $size solid $color;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  }
+  @else if ($direction == 'down'){
+    border-top: $size solid $color;
+    border-left: $size solid transparent;
+    border-right: $size solid transparent;
+  }
+  @else if ($direction == 'left'){
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-right: $size solid $color;
+  }
+  @else if ($direction == 'right'){
+    border-top: $size solid transparent;
+    border-bottom: $size solid transparent;
+    border-left: $size solid $color;
+  }
+}
+//Example: @include triangle(down, 10px, blue);
+// RGBA AND COLOR mixin
+@mixin rgba($type, $color, $percentage, $shade: ligthen) {
+  @if $shade == lighten {
+    @if $type == color {
+      color: solid-lighten($color, $percentage);
+      color: rgba($color, $percentage);
+    }
+    @if $type == bg {
+      background-color: solid-lighten($color, $percentage);
+      background-color: rgba($color, $percentage);
+    }
+  }
+  @else {
+     @if $type == color {
+      color: solid-darken($color, $percentage);
+      color: rgba($color, $percentage);
+    }
+    @if $type == bg {
+      background-color: solid-darken($color, $percentage);
+      background-color: rgba($color, $percentage);
+    }
+  }
+}
+// Example: @include rgba(bg, #fff, .7);
+// Example: @include rgba(color, #000, .3);
+// Paginacion mixin (color, hover activo, activo click)
+@mixin swap-pagination-color($color, $hover, $active) {
+  ul {
+    background-color: $color;
+
+    li {
+      &.previous {
+        > a {
+          border-right-color: mix($color, white, 66%);
+        }
+      }
+      > a, > span {
+        border-left-color: mix($color, white, 66%);
+
+        &:hover, &:focus {
+          background-color: $hover;
+        }
+        &:active {
+          background-color: $active;
+        }
+      }
+      &.active {
+        > a, > span {
+          background-color: $active;
+        }
+      }
+
+      &.pagination-dropdown.dropup {
+        .dropdown-arrow {
+          border-top-color: $color;
+        }
+      }
+    }
+  }
+}
+
+@mixin text-field {
+ display: inline-block;
+  outline: none;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+ 
+}
+
+@mixin button($color: $red, $text_color: $white) {
+  display: inline-block;
+  outline: none;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  font: 14px/100% Arial, Helvetica, sans-serif;
+  padding: .5em 2em .55em;
+  text-shadow: 0 1px 1px rgba(0,0,0,.3);
+  @include rounded();
+  color: $text_color !important;
+  font-weight: bold;
+  border: solid 1px darken($color, 18%);
+  background: $color;
+  @include gradient(saturate($color, 15%), darken($color, 15%));
+
+  &:hover {
+    text-decoration: none;
+    background: saturate($color, 10%);
+    @include gradient(saturate($color, 5%), darken($color, 5%));
+  }
+
+  &:active {
+    position: relative;
+    top: 1px;
+    color: saturate($color, 15%);
+    @include gradient(saturate($color, 15%), lighten($color, 15%));
+  }
+}
+
+@mixin rounded($radius: 0.5em) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
+
+@mixin gradient($from, $to) {
+  background: -webkit-gradient(linear, left top, left bottom, from($from), to($to));
+  background: -moz-linear-gradient(top,  $from, $to);
+  filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$from}', endColorstr='#{$to}');
+}
+
+@mixin wh($w, $h){
+  width: $w + px;
+  height: $h + px;
+}

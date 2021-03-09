@@ -1,0 +1,34 @@
+.chips{
+    display: inline-block;
+    height: 32px;
+    font-size: fontSize(h6);
+    font-weight: 500;
+    color: scotch-color('text', 'for-text');
+    line-height: 32px;
+    padding: 0 padding-global(p5);
+
+    background-color: scotch-color('text', 'dark', 'opacity');
+    margin-bottom: margin-global(m7);
+    margin-right: margin-global(m7);
+    img, svg{
+        float: left;
+        margin: 0 8px 0 -12px;
+        height: 32px;
+        width: 32px;
+        border-radius: 50%;
+    }
+    i{
+            float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0px 0 -10px;
+    height: 30px;
+    width: 32px;
+    border-radius: 50%;
+}
+
+   
+}
+
+@include bg('.chip');

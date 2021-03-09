@@ -1,0 +1,13 @@
+
+@import "breakpoint";
+@import "img-responsive";
+
+
+// Set up responsive image
+#my-oreo-cake
+{
+    // @include responsive-image(url, width(px), height(px), <breakpoint>);
+    @include responsive-image("https://tokegameart.net/wp-content/uploads/2016/10/Super-Cat-2D-Character-Sprite.jpg", 400, 249);
+    @include responsive-image("https://tokegameart.net/wp-content/uploads/2016/10/Super-Cat-2D-Character-Sprite.jpg", 750, 467, 35rem);
+    @include responsive-image("https://tokegameart.net/wp-content/uploads/2016/10/Super-Cat-2D-Character-Sprite.jpg", 1024, 638, 46.8rem);
+}

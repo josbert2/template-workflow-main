@@ -1,0 +1,14 @@
+// variable prefixes for CSS4 output
+
+$size-prefix: --size-;
+$color-prefix: --color-;
+
+/*=========================================================================
+   Import function mixin map and var css output
+=========================================================================*/
+
+@import '_size';  
+@import '_color-map';
+@import '_each-map';
+@import '_root';
+

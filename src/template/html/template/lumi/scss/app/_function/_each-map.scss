@@ -1,0 +1,15 @@
+@mixin map-each($map) {
+  @each $name, $value in $map {
+    @if not map-has-key($map, $name) {
+      @warn "'#{$name}' is not a valid icon name";
+    }
+
+    @else {
+      .#{$name}{
+        content: $value;
+      }
+    } 
+  }
+}
+// @include map-each($map);
+

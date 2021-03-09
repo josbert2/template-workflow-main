@@ -1,0 +1,16 @@
+$p-section:  padding-global(p1) + padding-global(p1) + padding-global(p1) 
+			 padding-global(p1) 
+			 padding-global(p1) + padding-global(p1) + padding-global(p1) 
+			 padding-global(p1);
+
+$m-section: margin-global(m1) + margin-global(m1);
+@import '_dashboard';
+@import '_vue';
+@import '_app';
+@import '_beatiful';
+@import '_nucleo-icon';
+
+/*=========================================================================
+   Responsive
+=========================================================================*/  
+@import '_responsive/_dashboard';

@@ -1,0 +1,76 @@
+
+
+.card {
+  @include shadow(1);
+  display: block;
+  border-radius: .15rem;
+  min-height: 8rem;
+  background: white;
+ 
+  transition: all 250ms;
+  font-size: 0.9rem;
+  margin-bottom: margin-global(m5);
+  .card-category{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: padding-global(p5);
+
+  }
+  .card-heading{
+    position: relative;
+    .title{
+      @include font-bold-rounded();
+      font-size: fontSize(h2);
+      color: scotch-color('black', 'base', 'light'); 
+    }
+    padding: padding-global(p3);
+    font-size: fontSize(h4);
+
+  }
+  .card-sub-title{
+    font-size: fontSize(h5);
+    color: scotch-color('black', 'base', 'light'); 
+     padding: padding-global(p3);
+  }
+  .card-body{
+    padding: padding-global(p3);
+ 
+  }
+  .card-footer{
+      padding: padding-global(p3);
+
+  }
+  .card-tag{
+    position: relative;
+    font-size: fontSize(h6);
+    @include font-bold-rounded();
+    padding: padding-global(p6);
+    border-radius: 20px;
+    background:  scotch-color('black', 'base', 'light'); 
+
+  }
+.card-footer span{
+    @include font-bold-rounded();
+    margin-right: margin-global(m10);
+    color: scotch-color('black', 'base', 'light');
+}
+
+ 
+}
+
+.card-hover{
+   &:hover,&:focus {
+    @include shadow(3);
+
+  }
+  &:active {
+    @include shadow(2);
+
+  } 
+}
+
+
+
+
+

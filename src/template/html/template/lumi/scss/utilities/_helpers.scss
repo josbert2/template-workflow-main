@@ -1,0 +1,284 @@
+.has-text-centered {
+    text-align: center !important;
+}
+.hr{
+  margin: 50px 0;
+  color: rgba(0,0,0,0.1);
+  background:rgba(0,0,0,0.1);
+      opacity: 0.1;
+}
+.text-upper{
+
+  text-transform: uppercase;
+}
+.d-block{
+  display: block;
+}
+.w-10{
+  width: 10%;
+  
+}
+.w-20{
+  width: 20%;
+  
+}
+.w-30{
+  width: 30%;
+  
+}
+.w-40{
+  width: 40%;
+  
+}
+.w-50{
+  width: 50%;
+  
+}
+.w-60{
+  width: 60%;
+  
+}
+.w-70{
+  width: 70%;
+  
+}
+.w-80{
+  width: 80%;
+  
+}
+.w-90{
+  width: 90%;
+  
+}
+.w-100{
+  width: 100%;
+  
+}
+
+.img-responsive{
+      display: block;
+    max-width: 100%;
+    height: auto;
+
+}
+.progress-line{
+  width: 100%;
+  height: 8px;
+}
+
+.m-r-none{
+  margin-right: 0 !important;
+}
+.text-white{
+  color: #ffffff!important;
+}
+.text-black{
+  color:  scotch-color('black', 'base') !important;
+}
+.text-main{
+  color:  scotch-color('black', 'dark') !important;
+}
+.text-sub{
+  color: scotch-color('black', 'light') !important;
+}
+.text-sub_light{
+  color: scotch-color('black', 'light', 'dark') !important;
+}
+.width-100p, .width-full {
+    width: 100%;
+}
+.pull-right{
+  text-align: right;
+}
+.pull-left{
+  text-align: left;
+}
+.mt-auto{
+  margin-top: auto;
+}
+.mr-auto{
+  margin-right: auto;
+}
+.ml-auto{
+  margin-left: auto;
+}
+.mb-auto{
+  margin-bottom: auto;
+}
+.no-margin-b{
+  margin-bottom: 0px !important;
+}
+.no-margin{
+  margin: 0 !important;
+}
+.no-padding{
+  padding: 0 !important;
+}
+.f-bold{
+  @include font-bold();
+}
+.f-light{
+  @include font-light();
+}
+.f-bold-rounded{
+  @include font-bold-rounded();
+}
+.f-light-rounded{
+  @include font-light-rounded();
+}
+.d-content{
+    display: contents;
+}
+@mixin parrafo($f: 16px, 
+               $fw: 400, 
+               $lh: 25px, 
+               $m:  0 0 24px 0,
+               $p: 0px, 
+               $bold: false,
+               $lato: false,
+               $c: rgba(0,0,0,.54)){
+    font-size: $f;
+    font-weight: $fw;
+    line-height: $lh;
+    margin: $m;
+    padding: $p;
+    color: $c;
+    @if $bold == true {
+        @include font-bold-rounded();
+    }@else if $lato == true{
+          font-family: Lato,"sans-serif";
+    }
+}
+.bg-code{
+    background-color: scotch-color('text', 'light-key');
+    color: scotch-color('pink', 'light');
+    padding: 7px;
+    border-radius: 5%;
+    margin-left: 5px;
+
+}
+.o-text{
+  line-height: 1.7;
+  font-weight: 400;
+  font-size: fontSize(h5);
+}
+.bg-code-sub{
+    background-color: scotch-color('text', 'light-key');
+    color: scotch-color('primary', 'light');
+    padding: 7px;
+    border-radius: 5%;
+    margin-left: 5px;
+
+}
+.display-inline-block{
+  display: inline-block !important;
+}
+.ali{
+      position: relative;
+    right: -9px;
+    top: 7px;
+}
+.d-flex-align{
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.sub-text{
+    @include parrafo();
+}
+.sub-text-no-m{
+    @include parrafo($m: 0);
+}
+@mixin a(){
+  a{  
+   color: scotch-color('text', 'for-text');
+    &:visited{
+    color: scotch-color('text', 'for-text');
+    }
+    &:hover{
+    color: scotch-color('black', 'light'); 
+    }
+    &:focus{
+    color: scotch-color('black', 'light'); 
+    }
+    &:active{
+    color: scotch-color('black', 'light'); 
+    }
+  }
+}
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100); // Adjust this to include the pixel amounts you need.
+$sides: (top, bottom, left, right); // Leave this variable alone
+
+@each $space in $spaceamounts {
+  @each $side in $sides {
+    .m-#{str-slice($side, 0, 1)}-#{$space} {
+      margin-#{$side}: #{$space}px !important;
+    }
+  
+    .p-#{str-slice($side, 0, 1)}-#{$space} {
+      padding-#{$side}: #{$space}px !important;
+    }
+  }
+}
+.m-all-70{
+margin: 70px;
+}
+
+
+@mixin font-weight($weight) {
+  $weights: (
+    thin: 100,
+    extra-light: 200,
+    ultra-light: 200,
+    light: 300,
+    normal: 400,
+    book: 400,
+    regular: 400,
+    medium: 500,
+    semi-bold: 600,
+    demi-bold: 600,
+    bold: 700,
+    extra-bold: 800,
+    ultra-bold: 900,
+    heavy: 900,
+    black: 900,
+    ultra: 900,
+    ultra-black: 900,
+    extra-ultra: 900
+  );
+  
+  $output: $weight;
+  @if map-has-key($weights, $weight) {
+    $output: map-get($weights, $weight);
+  }
+  
+  font-weight: $output;
+}
+
+.w100 {
+  @include font-weight(thin);
+}
+.w200 {
+  @include font-weight(extra-light);
+}
+.w300 {
+  @include font-weight(light);
+}
+.w400 {
+  @include font-weight(book);
+}
+.w500 {
+  @include font-weight(medium);
+}
+.w600 {
+  @include font-weight(semi-bold);
+}
+.w700 {
+  @include font-weight(bold);
+}
+.w800 {
+  @include font-weight(extra-bold);
+}
+.w900 {
+  @include font-weight(ultra-bold);
+}

@@ -1,0 +1,46 @@
+
+
+
+@mixin forKeyframe($i){
+        
+    top: ($i * -124px);
+
+}
+@mixin keyframesC($n, $name) {
+    @keyframes #{$name} {
+      @for $i from 0 through $n {
+        $s: ($i * 1)  + "%";
+        #{$s} {
+            @include forKeyframe($i);
+         }
+      }
+    }
+}
+
+
+//@include keyframesC(100, "yolo");
+//@include keyframes(100, "yolo")
+
+@mixin animation($delay, $duration, $animation, $direction: forward, $fillmode: both) {
+    -webkit-animation-delay: $delay;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-name: $animation;
+    -webkit-animation-fill-mode: $fillmode;
+    -webkit-animation-direction: $direction;
+
+    -moz-animation-delay: $delay;
+    -moz-animation-duration: $duration;
+    -moz-animation-name: $animation;
+    -moz-animation-fill-mode: $fillmode;
+    -moz-animation-direction: $direction;
+
+    animation-delay: $delay;
+    animation-duration: $duration;
+    animation-name: $animation;
+    animation-fill-mode: $fillmode;
+    animation-direction: $direction;
+
+}
+
+
+// use of keyframes mixin

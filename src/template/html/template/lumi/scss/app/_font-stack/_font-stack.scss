@@ -1,0 +1,70 @@
+
+$base: 'font-stack';
+$brand-faces:
+   Gotham (
+        Rounded-Light "Gotham-Rounded-Light",
+        normal "nexa/nexa_regular-webfont",
+        bold "nexa/nexa_bold-webfont",
+        bolder "nexa/nexa_black-webfont"
+    ),
+    TinFish (
+        bold "font/tin-fish",
+        lighter "font/tin-fish",
+        normal "font/tin-fish"
+    ),
+    Proxima-Nova (
+      light "Proxima-Nova-Light",
+      bold "font/tin-fish",
+      lighter "font/tin-fish",
+      normal "font/tin-fish"
+    );
+
+@mixin brand-faces() {
+  @each $face in $brand-faces {
+    $face-name: quote( #{nth($face, 1)} );
+    $font-weights: nth($face, 2);
+    @each $weight in $font-weights {
+      @font-face {
+        font-family: $face-name + '-' + nth($weight, 1);
+        src: url('../fonts/' + $base + '/' + $face-name + '/' + nth($weight, 2) + '.eot?76871668')  ;
+        src: url('../fonts/' + $base + '/' + $face-name + '/' + nth($weight, 2) + '.eot?76871668#iefix') format('embedded-opentype'),
+        url( '../fonts/' + $base + '/' + $face-name + '/' + nth($weight, 2) + '.woff') format('woff'),
+        url( '../fonts/' + $base + '/' + $face-name + '/' + nth($weight, 2) + '.ttf') format('truetype'),
+        url( '../fonts/' + $base + '/' + $face-name + '/' + nth($weight, 2) + '.svg?76871668#rosche') format('svg');
+        font-weight: nth($face, 1);
+        font-style: normal;
+      }
+    }
+  }
+}
+
+
+@if $brand-faces != false {
+  @include brand-faces();
+}
+
+
+
+//@mixin brand-faces() {
+
+//  @each $face in $brand-faces {
+//      $face-name: quote( #{nth($face, 1)} );
+//      $font-weights: nth($face, 2);
+//      @each $weight in $font-weights {
+//          @font-face {
+//            font-family: $face-name;
+//            src: url( nth($weight, 2) + '.eot?76871668' );
+//            src: url( nth($weight, 2) + '.eot?76871668#iefix') format('embedded-opentype'),
+//             url( nth($weight, 2) + '.woff?76871668') format('woff'),
+//             url( nth($weight, 2) + '.ttf?76871668') format('truetype'),
+//             url( nth($weight, 2) + '.svg?76871668#rosche') format('svg');
+//            font-weight: nth($weight, 1);
+//            font-style: normal;
+//          }
+//      }
+//      .font-#{nth($face, 1)} {
+//          font-family: $face-name;
+//      }
+//  }
+
+//}*/

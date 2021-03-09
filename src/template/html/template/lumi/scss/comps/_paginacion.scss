@@ -1,0 +1,195 @@
+.pagination{
+	&.full-width-center{
+		width: 100%;
+		display: flex;
+		justify-content: center;
+		align-center: center;
+	}
+	
+	li {
+	    display: inline-block;
+	    font-size: fontSize(h5);
+	    padding: 0 padding-global(p6);
+	    margin: 0 margin-global(m9);
+	    line-height: 30px;
+	    
+	    text-align: center;
+	    @include shift($property: background, $ease: $cubic-1 );
+	    &:hover{
+			background: scotch-color('text', 'dark', 'opacity');
+		}
+	}
+	li:not(.disabled){
+		cursor: pointer;
+	}
+	li:last-child{
+		background:none !important;
+	}
+	li.disabled a {
+	    cursor: default;
+	    color: scotch-color('text', 'dark');
+
+	}
+	li.disabled{
+		background:none !important;
+	}
+	li a i {
+		@include roundedPorcent(50);
+		@include shift($property: background, $ease: $cubic-1 );
+		&:hover{
+			background: scotch-color('text', 'dark', 'opacity');
+		}
+	}
+	li i {
+	    font-size: fontSize(h2);
+	    vertical-align: middle;
+	}
+	li.active{
+		background: scotch-color('text', 'for-text', 'null');
+	}
+	li.active a{
+		color: scotch-color('text', 'for-text');
+	}
+}
+.p-primary {
+	li{
+		&:hover{
+			background-color:  scotch-color('primary', 'light');
+			a{
+				color: scotch-color('text', 'white');
+			}
+		}
+	}
+   	li.active{
+   		background-color:  scotch-color('primary', 'light');
+   		
+   	}
+   	li.active a{
+		color: scotch-color('text', 'white');
+	}
+   	li a i {
+		&:hover{
+			background: scotch-color('primary', 'light', 'null');
+		}
+	}
+
+}
+
+.p-danger {
+	li{
+		&:hover{
+			background-color:  scotch-color('danger', 'light');
+			a{
+				color: scotch-color('text', 'white');
+			}
+		}
+	}
+   	li.active{
+   		background-color:  scotch-color('danger', 'light');
+   		
+   	}
+   	li.active a{
+		color: scotch-color('text', 'white');
+	}
+   	li a i {
+		&:hover{
+			background: scotch-color('danger', 'light', 'null');
+		}
+	}
+
+}
+
+.p-warning {
+	li{
+		&:hover{
+			background-color:  scotch-color('warning', 'light');
+			a{
+				color: scotch-color('text', 'white');
+			}
+		}
+	}
+   	li.active{
+   		background-color:  scotch-color('warning', 'light');
+   		
+   	}
+   	li.active a{
+		color: scotch-color('text', 'white');
+	}
+   	li a i {
+		&:hover{
+			background: scotch-color('warning', 'light', 'null');
+		}
+	}
+
+}
+.p-success {
+	li{
+		&:hover{
+			background-color:  scotch-color('success', 'light');
+			a{
+				color: scotch-color('text', 'white');
+			}
+		}
+	}
+   	li.active{
+   		background-color:  scotch-color('success', 'light');
+   		
+   	}
+   	li.active a{
+		color: scotch-color('text', 'white');
+	}
+   	li a i {
+		&:hover{
+			background: scotch-color('success', 'light', 'null');
+		}
+	}
+
+}
+
+.p-purple {
+	li{
+		&:hover{
+			background-color:  scotch-color('purple', 'light');
+			a{
+				color: scotch-color('text', 'white');
+			}
+		}
+	}
+   	li.active{
+   		background-color:  scotch-color('purple', 'light');
+   		
+   	}
+   	li.active a{
+		color: scotch-color('text', 'white');
+	}
+   	li a i {
+		&:hover{
+			background: scotch-color('purple', 'light', 'null');
+		}
+	}
+
+}
+
+.p-pink {
+	li{
+		&:hover{
+			background-color:  scotch-color('pink', 'light');
+			a{
+				color: scotch-color('text', 'white');
+			}
+		}
+	}
+   	li.active{
+   		background-color:  scotch-color('pink', 'light');
+   		
+   	}
+   	li.active a{
+		color: scotch-color('text', 'white');
+	}
+   	li a i {
+		&:hover{
+			background: scotch-color('pink', 'light', 'null');
+		}
+	}
+
+}

@@ -1,0 +1,217 @@
+
+
+$color-bg: #4F8EDB;
+$color-primary: rgba(#30508F, 0.3);
+$color-primary: #30508F;
+$color-white: rgba(white, 0.3);
+$color-white: white;
+
+$color-light: #9EB6D7;
+$color-lighter: #C8DAF2;
+$color-dark: #343C60;
+
+$color-ear: #DE6465;
+$color-tongue: $color-ear;
+
+$duration: 12s;
+$total-kf: 15;
+
+$k-head: (
+  0: rotate(0),
+  1: rotate(0),
+  3: rotate(-14deg),
+  6: rotate(-7deg),
+  7: rotate(-14deg),
+  9: rotate(-7deg),
+  11: rotate(0),
+  12: rotate(0)
+);
+
+$k-mouth: (
+  0: translateX(0),
+  1: translateX(0),
+  2: translateX(35%),
+  3: translateX(35%),
+  4: translateX(35%),
+  5: translateX(0) translateY(-5%)
+);
+
+$k-nose: (
+  0: translate(0),
+  1: translate(0),
+  2: translateX(100%),
+  4: translateX(100%),
+  5: translateX(0) translateY(-15%)
+);
+
+$k-body: (
+  0: translate(0),
+  1: translateY(3%),
+  2: translate(0),
+  3: translate(0),
+  4: translateY(2%),
+  5: translateY(0),
+);
+
+$k-mane: map-merge($k-body, (
+  1: translateY(5%),
+  4: translateY(3%)
+));
+
+$k-face: (
+  0: translate(0),
+  1: translate(0),
+  2: translateX(15%),
+  3: translateX(15%) translateY(0),
+  4: translateX(15%) translateY(0),
+  5: translateX(0) translateY(-15%),
+  6: translateX(0) translateY(-15%),
+  7: translateX(0) translateY(0),
+);
+
+$k-left-eye: (
+  0.4: scaleY(1),
+  0.5: scaleY(0.3),
+  0.6: scaleY(1),
+  1: translateX(0),
+  1.4: scaleY(1) translateX(75%),
+  1.5: scaleY(0.3) translateX(75%),
+  1.6: scaleY(1) translateX(75%),
+  2: translateX(150%),
+  3.3: scaleY(1) translateX(150%),
+  3.4: scaleY(0.3) translateX(150%),
+  3.5: scaleY(1) translateX(150%),
+  3.8: scaleY(1) translateX(150%),
+  3.9: scaleY(0.3) translateX(150%),
+  4.0: scaleY(1) translateX(150%),
+  5: translateX(0) translateY(-170%),
+  5.4: scaleY(1) translateY(-170%),
+  5.5: scaleY(0.3) translateY(-170%),
+  5.6: scaleY(1) translateY(-170%),
+  5.7: scaleY(1) translateY(-170%),
+  5.8: scaleY(0.3) translateY(-170%),
+  5.9: scaleY(1) translateY(-170%),
+  8: translateY(0),
+  9.8: scaleY(1) translateY(0),
+  9.9: scaleY(0.3) translateY(0),
+  10.0: scaleY(1) translateY(0),
+  10.5: scaleY(1) translateY(0),
+  10.6: scaleY(0.3) translateY(0),
+  10.7: scaleY(1) translateY(0),
+);
+
+$k-right-eye: $k-left-eye;
+
+$k-tongue: (
+  7: translateY(0),
+  8: translateY(100%) rotate(10deg),
+  11: translateY(100%) rotate(10deg),
+  12: translateY(0)
+);
+
+$k-mouth-cover-left: (
+  6: rotate(0),
+  9: rotate(90deg),
+  11: rotate(90deg),
+  13: rotate(0)
+);
+
+$k-mouth-cover-right: (
+  6: rotate(0),
+  9: rotate(-90deg),
+  11: rotate(-90deg),
+  13: rotate(0)
+);
+
+$k-tail: (
+  1: rotate(0),
+  1.5: rotate(30deg),
+  2: rotate(0),
+  3: rotate(0),
+  4: rotate(30deg),
+  7: rotate(30deg),
+  7.25: rotate(0),
+);
+$tail-wags: 14;
+$tail-interval: (11 - 7.5) / $tail-wags;
+@for $i from 1 through $tail-wags {
+  $k-tail: map-merge($k-tail, (
+    (($i - 1) * $tail-interval + 7.5): rotate(28deg),
+    (($i - 0.5) * $tail-interval + 7.5): rotate(0)
+  )) !global;
+}
+
+$k-left-ear: (
+  0: rotate(6deg),
+  1: rotate(6deg),
+  2: rotate(15deg),
+  4: rotate(15deg),
+  5: rotate(30deg),
+  6: rotate(30deg),
+  7: rotate(0deg),
+  8: rotate(0deg),
+  9: rotate(15deg),
+  12: rotate(15deg),
+  14: rotate(6deg),
+  $total-kf: rotateZ(6deg)
+);
+
+$k-right-ear: (
+  0: rotateZ(-16deg),
+  1: rotateZ(-16deg),
+  2: rotateZ(-19deg),
+  4: rotateZ(-19deg),
+  5: rotateZ(-30deg),
+  
+  5.5: rotateZ(-19deg),
+  5.6: rotateZ(-30deg),
+  5.7: rotateZ(-19deg),
+  6: rotateZ(-19deg),
+  6.1: rotateZ(-30deg),
+  6.2: rotateZ(-19deg),
+
+  7: rotateZ(-9deg),
+  8: rotateZ(-9deg),
+  
+  9: rotateZ(-19deg),
+  9.1: rotateZ(-30deg),
+  9.2: rotateZ(-19deg),
+  9.4: rotateZ(-19deg),
+  9.5: rotateZ(-30deg),
+  9.6: rotateZ(-19deg),
+  
+  12: rotateZ(-19deg),
+  14: rotateZ(-16deg),
+  $total-kf: rotateZ(-16deg)
+);
+
+@each $i, $prop in $k-right-ear {
+  $k-right-ear: map-merge($k-right-ear, (
+    $i: $prop + ' ' + rotateY(180deg)
+  ));
+}
+
+@mixin effect($name, $kf) {
+  @keyframes #{$name} {
+    @each $interval, $transform in $kf {
+      #{percentage($interval/$total-kf)} {
+        transform: $transform;
+      }
+    }
+  }
+}
+
+@include effect('head', $k-head);
+@include effect('mouth', $k-mouth);
+@include effect('nose', $k-nose);
+@include effect('body', $k-body);
+@include effect('mane', $k-mane);
+@include effect('face', $k-face);
+@include effect('left-eye', $k-left-eye);
+@include effect('right-eye', $k-right-eye);
+@include effect('tongue', $k-tongue);
+@include effect('mouth-cover-left', $k-mouth-cover-left);
+@include effect('mouth-cover-right', $k-mouth-cover-right);
+@include effect('tail', $k-tail);
+@include effect('left-ear', $k-left-ear);
+@include effect('right-ear', $k-right-ear);

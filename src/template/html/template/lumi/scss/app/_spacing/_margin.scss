@@ -1,0 +1,28 @@
+/*=========================================================================
+   Margin function size
+=========================================================================*/ 
+@function magin-rem($px) {
+  @return ($px / 16px) * 1rem;
+}
+$margin-global: (
+  m1   : magin-rem(36px),
+  m2   : magin-rem(24px),
+  m3   : magin-rem(20px),
+  m4   : magin-rem(16px),
+  m5   : magin-rem(14px),
+  m6   : magin-rem(12px),
+  m7   : magin-rem(8px),
+  m8   : magin-rem(6px),
+  m9   : magin-rem(4px),
+  m10  : magin-rem(2px)
+);
+
+
+
+@function margin-global($size) {
+  @if map-has-key($margin-global, $size) {
+    @return map-get($margin-global,$size)
+  } @else {
+    @error '$size is not valid, valid values are t1, t2, t3, normal, small, smaller';
+  }
+}

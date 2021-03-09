@@ -1,0 +1,29 @@
+/*=========================================================================
+   Padding function size
+=========================================================================*/ 
+@function padding-rem($px) {
+  @return ($px / 16px) * 1rem;
+}
+$padding-global: (
+  p0   : padding-rem(40px),
+  p1   : padding-rem(36px),
+  p2   : padding-rem(24px),
+  p3   : padding-rem(20px),
+  p4   : padding-rem(16px),
+  p5   : padding-rem(14px),
+  p6   : padding-rem(12px),
+  p7   : padding-rem(8px),
+  p8   : padding-rem(6px),
+  p9   : padding-rem(4px),
+  p10  : padding-rem(2px)
+); 
+
+
+
+@function padding-global($size) {
+  @if map-has-key($padding-global, $size) {
+    @return map-get($padding-global,$size)
+  } @else {
+    @error '$size is not valid, valid values are t1, t2, t3, normal, small, smaller';
+  }
+}

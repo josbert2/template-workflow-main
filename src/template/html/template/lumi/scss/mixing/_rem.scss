@@ -1,0 +1,30 @@
+@mixin rem($property, $values...) {
+    $n: length($values);
+    $i: 1;
+
+    $pxlist: ();
+    $remlist: ();
+
+    @while $i <= $n {
+        $itemVal: (nth($values, $i));
+        @if $itemVal != "auto"{
+            $pxlist: append($pxlist, $itemVal + px);
+            $remlist: append($remlist, ($itemVal / 10) + rem);
+        }@else{
+            $pxlist: append($pxlist, auto);
+            $remlist: append($remlist, auto);
+        }
+        
+    
+        $i: $i + 1;
+    }
+
+    #{$property}: $pxlist;
+    #{$property}: $remlist;
+}
+
+/*.main{
+    @inlcude rem("margin", 10, 0);
+    @inlcude rem("padding", 10);
+    @inlcude rem("font-size", 12);
+}*/

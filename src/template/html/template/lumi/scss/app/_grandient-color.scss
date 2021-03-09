@@ -1,0 +1,22 @@
+$grandient-color: (
+	1:(
+		1: #08AEEA
+	),
+	2:(
+		1: #6f86d6
+
+	)
+);
+
+ 
+// retrieve color from map ie. `color(primary, base)`
+@function grandient-color($color-name, $color-variant:null) {
+  // color variant is optional
+  @if ($color-variant != null) {
+    // map inception
+    @return map-get(map-get($grandient-color, $color-name), $color-variant);
+  } @else {
+    @return map-get($grandient-color, $color-name);
+  }
+}
+

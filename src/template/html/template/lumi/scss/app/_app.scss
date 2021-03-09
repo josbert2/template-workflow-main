@@ -1,0 +1,97 @@
+$c-font-white: #f7f7f7; // Color blanco
+$color-border:  #e0e0e0; //Color de border
+$scotch-colors: (
+  'app': (
+    '0': #212121, 
+    '1': #001545,
+    '2': #41494f,
+    '3': #646f79,
+    '4': #40545a,
+    '5': #d3d3d3,
+    '6': #21242b
+
+  ),
+  'lvl':(
+    '1': rgba(0, 0, 0, .01),
+    '2': rgba(0, 0, 0, .02),
+    '3': rgba(0, 0, 0, .03),
+    '4': rgba(0, 0, 0, .04),
+    '5': rgba(0, 0, 0, .05),
+    ),
+  'text': (
+    'white': #fff,
+    'base': #3C3B3D,
+    'light': #F5F7FA,
+    'light-after': #f7f7f7,
+    'light-key': #eaeaea,
+    'for-text': rgba(255, 255, 255, 0.8),
+    'dark': #4d545d
+  ),
+  'primary': (
+    'base': #9980fa,
+    'light': #4b7bec,
+    'dark': #444ce0
+  ),
+  'danger': (
+
+  	'base': #D1335B,
+  	'light': #ff635d,
+  	'dark': #ee5253,
+    'custom': #ff3860
+  ),
+  'warning': (
+	'base': #fdd835,
+	'light': #feca57,
+	'dark': #f7b731
+  ),
+  'success': (
+	'base': #4acaa8,
+	'light': #26de81,
+	'dark': #20bf6b
+  ),
+  'pink': (
+    'base': #E91E63,
+    'light': #FF4081,
+    'dark': #C2185B
+   ),
+  'orange': (
+    'base': #f55d2c
+    ),
+   'purple': (
+	'base':  #794aca,
+	'light': #a55eea,
+	'dark': #5f27cd
+  ),
+   'black': (
+	'base': #1e1e1e,
+	'light': #313944,
+	'dark': #4d5259
+  ),
+
+  'accent': (
+    'base': #d98328,
+    'light': #dd8f3d,
+    'dark': #c57623
+  ),
+  'secondary': (
+    'base': #5a1321,
+    'light': #7b1a2d,
+    'dark': #51111e
+  ),
+  'foreground': (
+    'base': #191919,
+    'light': #333333,
+    'dark': #111111,
+    'darker': #000000
+  ),
+  'background': (
+    'base': #e9e9e9,
+    'light': #ffffff,
+    'dark': #dddddd
+  )
+);
+
+
+
+
+

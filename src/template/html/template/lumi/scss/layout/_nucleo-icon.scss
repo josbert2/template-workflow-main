@@ -1,0 +1,299 @@
+
+@font-face {
+    font-family: styleguideicons;
+    src: url(assets/font/icons/style-guide-icons.eot);
+    src: url(assets/font/icons/style-guide-icons.eot#iefix) format("embedded-opentype"),
+     url(assets/font/icons/style-guide-icons.ttf) format("truetype"), 
+     url(assets/font/icons/style-guide-icons.woff) format("woff"), 
+     url(assets/font/icons/style-guide-icons.svg#style-guide-icons) format("svg");
+    font-style: normal;
+    font-weight: 400
+}
+.sg-icon {
+    font-family: styleguideicons;
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+.sg-icon.is-size-20 {
+    font-size: 20px
+}
+
+.sg-icon.is-size-30 {
+    font-size: 30px
+}
+
+.sg-icon.is-size-40 {
+    font-size: 40px
+}
+
+.sg-icon.is-size-60 {
+    font-size: 60px
+}
+
+.sg-icon-airplane:before {
+    content: ""
+}
+
+.sg-icon-airplane-fill:before {
+    content: ""
+}
+
+.sg-icon-align-center:before {
+    content: ""
+}
+
+.sg-icon-align-left:before {
+    content: ""
+}
+
+.sg-icon-align-right:before {
+    content: ""
+}
+
+.sg-icon-analytics:before {
+    content: ""
+}
+
+.sg-icon-builder:before {
+    content: ""
+}
+
+.sg-icon-button:before {
+    content: ""
+}
+
+.sg-icon-calendar:before {
+    content: ""
+}
+
+.sg-icon-caret:before {
+    content: ""
+}
+
+.sg-icon-check:before {
+    content: ""
+}
+
+.sg-icon-check-circle:before {
+    content: ""
+}
+
+.sg-icon-check-circle-fill:before {
+    content: ""
+}
+
+.sg-icon-clean-ui:before {
+    content: ""
+}
+
+.sg-icon-clock:before {
+    content: ""
+}
+
+.sg-icon-code:before {
+    content: ""
+}
+
+.sg-icon-columns:before {
+    content: ""
+}
+
+.sg-icon-contacts:before {
+    content: ""
+}
+
+.sg-icon-contacts-alt:before {
+    content: ""
+}
+
+.sg-icon-copy:before {
+    content: ""
+}
+
+.sg-icon-create:before {
+    content: ""
+}
+
+.sg-icon-csv:before {
+    content: ""
+}
+
+.sg-icon-desktop-view:before {
+    content: ""
+}
+
+.sg-icon-divider:before {
+    content: ""
+}
+
+.sg-icon-drag:before {
+    content: ""
+}
+
+.sg-icon-ellipsis:before {
+    content: ""
+}
+
+.sg-icon-gear:before {
+    content: ""
+}
+
+.sg-icon-image:before {
+    content: ""
+}
+
+.sg-icon-images:before {
+    content: ""
+}
+
+.sg-icon-image-text:before {
+    content: ""
+}
+
+.sg-icon-info-circle:before {
+    content: ""
+}
+
+.sg-icon-key:before {
+    content: ""
+}
+
+.sg-icon-list:before {
+    content: ""
+}
+
+.sg-icon-locked:before {
+    content: ""
+}
+
+.sg-icon-mail:before {
+    content: ""
+}
+
+.sg-icon-mobile-view:before {
+    content: ""
+}
+
+.sg-icon-pencil:before {
+    content: ""
+}
+
+.sg-icon-people:before {
+    content: ""
+}
+
+.sg-icon-pie-chart:before {
+    content: ""
+}
+
+.sg-icon-plus:before {
+    content: ""
+}
+
+.sg-icon-reload:before {
+    content: ""
+}
+
+.sg-icon-save-draft:before {
+    content: ""
+}
+
+.sg-icon-search:before {
+    content: ""
+}
+
+.sg-icon-segment:before {
+    content: ""
+}
+
+.sg-icon-social:before {
+    content: ""
+}
+
+.sg-icon-sort-asc:before {
+    content: ""
+}
+
+.sg-icon-sort-desc:before {
+    content: ""
+}
+
+.sg-icon-spacer:before {
+    content: ""
+}
+
+.sg-icon-teammate:before {
+    content: ""
+}
+
+.sg-icon-text:before {
+    content: ""
+}
+
+.sg-icon-text-only:before {
+    content: ""
+}
+
+.sg-icon-trash:before {
+    content: ""
+}
+
+.sg-icon-unlocked:before {
+    content: ""
+}
+
+.sg-icon-user-security:before {
+    content: ""
+}
+
+.sg-icon-view:before {
+    content: ""
+}
+
+.sg-icon-warning:before {
+    content: ""
+}
+
+.sg-icon-warning-triangle:before {
+    content: ""
+}
+
+.sg-icon-x:before {
+    content: ""
+}
+
+.sg-icon-x-legacy:before {
+    content: ""
+}
+
+.style-guide-header .has-children > a:after {
+    font-family: styleguideicons;
+    font-size: 16px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 400;
+    line-height: 1;
+    text-transform: none;
+    speak: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 50%;
+    right: 18px;
+    margin-top: -8px;
+    content: "";
+    transform: rotate(-90deg);
+    transition: transform .3s;
+}
+.style-guide-header .has-children.is-visible > a:after {
+    transform: rotate(0);
+}
+

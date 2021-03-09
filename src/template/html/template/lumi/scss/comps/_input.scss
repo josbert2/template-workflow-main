@@ -1,0 +1,105 @@
+@mixin input(){
+    .form-input{
+        width: 100%;
+        padding: 20px;
+        border: none;
+        bottom: 0;
+       
+        box-sizing: border-box;
+        left: 0;
+        margin: margin-global(m4);
+        outline: none;
+        font-size: fontSize(h6);
+        @include font-uni();
+        @include shadow(1);
+        box-sizing: border-box !important;
+        border-radius: 3px !important;
+        -webkit-transform: translateX(-3px) !important;
+        transform: translateX(-3px) !important;
+        @include shift($property: box-shadow, $ease: $cubic-1 );
+        
+    }
+    .group { 
+              position:relative; 
+              margin-bottom:margin-global(m2); 
+       
+            input               {
+              font-size:fontSize(h5);
+              padding:padding-global(p6);
+              display:block;
+              width:100%;
+              border:none;
+              border-bottom:1px solid scotch-color('Prisma', 'f3');
+             
+            }
+            input:focus         { outline:none; }
+
+            /* LABEL ======================================= */
+            label                {
+              color:scotch-color('text', 'base'); 
+              font-size:fontSize(h5);
+              font-weight:normal;
+              position:absolute;
+              pointer-events:none;
+              left:5px;
+              top:10px;
+               @include shift( $ease: $cubic-1 );
+            }
+
+            /* active state */
+            input:focus ~ label, input:valid ~ label        {
+              top:-20px;
+              font-size:fontSize(h6);
+              color:scotch-color('primary', 'base');
+            }
+
+            /* BOTTOM BARS ================================= */
+            .bar    { position:relative; display:block; width:100%; }
+            .bar:before, .bar:after     {
+              content:'';
+              height:2px; 
+              width:0;
+              bottom:1px; 
+              position:absolute;
+              background:scotch-color('primary', 'base'); 
+              @include shift( $ease: $cubic-1 );
+            }
+            .bar:before {
+              left:50%;
+            }
+            .bar:after {
+              right:50%; 
+            }
+
+            /* active state */
+            input:focus ~ .bar:before, input:focus ~ .bar:after {
+              width:50%;
+            }
+
+            /* HIGHLIGHTER ================================== */
+            .highlight {
+              position:absolute;
+              height:60%; 
+              width:100px; 
+              top:25%; 
+              left:0;
+              pointer-events:none;
+              opacity:0.5;
+            }
+
+            /* active state */
+            input:focus ~ .highlight {
+              animation:inputHighlighter 0.3s $cubic-1;
+            }
+
+            /* ANIMATIONS ================ */
+
+            @keyframes inputHighlighter {
+                from { background:scotch-color('primary', 'base');  }
+              to    { width:0; background:transparent; }
+            }
+
+
+
+       }
+}

@@ -1,0 +1,63 @@
+
+// size variable map in Sass
+$sizes: (
+  gutter: 30px,
+  spacer: 15px,
+  container: (sm: 750px, md: 970px, lg: 1170px ),
+  viewport:  (sm: 768px, md: 992px, lg: 1200px )
+);
+
+// retrieve size from map with Sass ie. `size(viewport, sm)`
+@function size($size-name, $size-variant:null, $true-val:false) {
+  
+  // we need to return the size value
+  @if $true-val == true {
+    // size variant is optional
+    @if ($size-variant != null) {
+      // map inception, need two deep
+      @return map-get(map-get($sizes,$size-name),$size-variant);
+
+    } @else {
+      // single-level size, one deep
+      @return map-get($sizes,$size-name);
+
+    }
+  // if we're only returning the CSS4 variable
+  } @else {
+    // size variant is optional
+    @if ($size-variant != null) {
+      // map inception, need two names
+      @return var(#{$size-prefix}#{$size-name}-#{$size-variant});
+
+    } @else {
+      // single-level size, one name
+      @return var(#{$size-prefix}#{$size-name});
+
+    }
+  }
+}
+
+/*=========================================================================
+   Example code
+=========================================================================*/  
+/* 
+ * referencing a top-level size variable with CSS via Sass @function 
+ */
+.shell { margin: size(spacer) auto; }
+
+
+/* 
+ * referencing our nested size variables with CSS via Sass @each loop 
+ */
+@each $name, $size in map-get($sizes,viewport) {
+  @media (min-width: size(viewport, $name)) {
+
+    .shell { 
+
+      width: size(container, $name); 
+    }
+  }
+}
+
+
+// hit “View Compiled” to see output

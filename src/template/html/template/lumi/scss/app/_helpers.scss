@@ -1,0 +1,8 @@
+@mixin hovered($color){
+	$map: $color;
+	&:hover{
+		background-color: $map;
+	}
+	
+    //darken($value, $percent)
+}

@@ -1,0 +1,123 @@
+// Dashboarding the UI Prixia
+$color-dash: rgb(244, 245, 247);
+$v: 50;
+.page{
+    background-color: $color-dash;
+    width: 280px;
+    background-color: #fff;
+    z-index: 1000;
+    left: -210px;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    right: auto;
+    overflow: hidden;
+    @include trans(transform .3s, $cubic-1);
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    border: 1px solid border-color(black, 10);
+    .sidebar-header{
+        display: block;
+        height: 60px;
+        line-height: 60px;
+        background-color: #fff;
+        border-bottom: 1px solid #e6e6e6;
+        color: #fff;
+        width: 100%;
+        padding: 0 padding-global(p2);
+        padding-left: 30px;
+        clear: both;
+        z-index: 10;
+        position: relative;  
+    }
+    .sidebar-menu{
+        height: calc(100% - 50px);
+        position: relative;
+        width: 100%;
+    }
+
+}
+
+.code-sandbox{
+    border-radius: 4px;
+}
+
+.header-sandbox{
+    padding: 18px 18px;
+    //border: thin solid rgba(0,0,0,.12);
+    background-color: #191c20;
+    border-radius: 5px 5px 0 0;
+    .view-code{
+        cursor: pointer;
+        svg{
+            fill: #b7b7b7;
+            width: 24px;
+            height: 24px;
+        }
+       
+    }
+    h3{
+        color:#b7b7b7; 
+        font-size: 16px;
+    }
+    border-bottom: thin solid #9980fa42;;
+}
+.code-sandbox{
+    min-height: 350px;
+    background-color: #191c20;
+    border-radius: 0 0 5px 5px;
+    &.padding-40-80{
+        padding: 40px 80PX;
+    }
+}
+.ml-auto{
+    margin-left: auto;
+}
+.right-35{
+    margin-right: 35px;
+}
+.panel-aside-right
+{
+    h5{
+        color:#b7b7b7; 
+        font-size: 16px;
+    }
+    position: fixed;
+    right: 20px;
+    top: 0;
+    padding-right: 60px;
+    li{
+        border-left: 3px solid #191c20;
+        padding-left: 12px!important;
+        padding-top: 10px!important;
+        padding-bottom: 10px!important;
+        a{
+            color: #afafaf61 !important;
+            font-size: .875rem!important;
+            
+        }
+        &.active-li{
+            border-left: 3px solid #9980fa;
+            a{
+                color:#b7b7b7 !important;
+               
+            }
+        }
+    }
+}
+
+.info-component{
+    background: #404040;
+    padding: 4px;
+    line-height: 12px;
+    font-size: 13px;
+    text-align: center;
+    border-radius: 4px;
+    
+    width: 58px;
+    margin: 0 auto;
+    margin-top: 11px;
+}
+.mauto{
+    margin: auto;
+}

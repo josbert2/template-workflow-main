@@ -1,0 +1,17 @@
+@mixin css3-prefix($property, $value) {
+    -webkit-#{$property}: #{$value};
+    -khtml-#{$property}: #{$value};
+    -moz-#{$property}: #{$value};
+    -ms-#{$property}: #{$value};
+    -o-#{$property}: #{$value};
+    #{$property}: #{$value};
+}
+@mixin transform_pre($params) {
+    @include css3-prefix('transform', $params);
+}
+//Example @include css3-prefix('transform', $params);
+
+// TRANSITION
+@mixin transition($what: all, $length: 1s, $easing: ease-in-out) {
+    @include css3-prefix('transition', $what $length $easing);
+}

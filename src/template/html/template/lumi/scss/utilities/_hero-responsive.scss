@@ -1,0 +1,12 @@
+@include mq('tablet'){
+	.hero.is-medium .hero-body {
+	    padding-bottom: 9rem;
+	    padding-top: 9rem;
+	}
+}
+@include mq('tablet'){
+	.hero.is-large .hero-body {
+	    padding-bottom: 18rem;
+	    padding-top: 18rem;
+	}                	
+}

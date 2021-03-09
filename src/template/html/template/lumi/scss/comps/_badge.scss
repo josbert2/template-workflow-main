@@ -1,0 +1,35 @@
+  @mixin _badge($t){
+    color: #fff;
+    content: attr(data-badge);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    position: absolute;
+    top: $t;
+    right: -21px;
+    font-weight: 600;
+    font-size: fontSize(h6);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+   
+  }
+.badge {
+    position: relative;
+    white-space: nowrap;
+    margin-right: margin-global(m1);
+    color: scotch-color('black', 'base', 'light');
+}
+
+
+.badge-data:after{
+    @include _badge(-16px);
+}
+.badge-data-icon:after{
+    @include _badge(-21px);
+}
+
+  @include bg('.badge', $pseudo: true);

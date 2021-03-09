@@ -1,0 +1,24 @@
+$components: false;
+	//@import '_hero';
+	//@import '_buttom';
+	//@import '_card';
+	//@import '_input';
+	//@import '_checkbox';
+	//@import '_badge';
+	//@import '_table';
+
+	//@import '_alert';
+	//@import '_paginacion';
+	//@import '_chips';
+	//@import '_dialogs';
+@if  $components == "asd" {
+	//Invocacion de mixin
+	  // incluye botones
+	@include input(); 	    // incluye inputs
+	@include checkbox();    // Incluye Checkbox  
+	@include tables();		// Incluye Tables
+			// Incluye Avatar
+} 
+@import '_avatar';
+@import '_buttom';
+@include btn_active();

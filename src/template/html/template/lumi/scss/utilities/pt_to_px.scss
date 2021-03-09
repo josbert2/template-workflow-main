@@ -1,0 +1,57 @@
+@function convert($value, $currentUnit, $convertUnit){
+  @if $currentUnit == px{
+    
+    @if $convertUnit == ems{
+      @return $value / 16+em;
+    }
+    @else if $convertUnit == percent{
+      @return percentage($value / 16);
+    }
+  
+  }@else if $currentUnit == ems{
+   
+    @if $convertUnit == px{
+      @return $value * 16+px;
+    }
+    @else if $convertUnit == percent{
+       @return percentage($value);
+    }
+  
+  }@else if $currentUnit == percent{
+  
+    @if $convertUnit == px{
+      @return $value * 16 / 100+px;
+    }
+    @else if $convertUnit == ems{
+      @return $value / 100+em;
+    }
+ 
+  }@else if $currentUnit == pts{
+   
+    @if $convertUnit == px{
+      @return $value * 1.3333+px;
+    }
+    @else if $convertUnit == ems{
+      @return $value / 12+em;
+    }
+    @else if $convertUnit == percent{
+        @return percentage($value / 12)
+    }
+  }
+}
+
+.example1{
+  font-size: convert(18, px, percent); /* converted from pixels */
+}
+
+.example2{
+  font-size: convert(13, pts, ems); /* converted from points */
+}
+
+.example3{
+  font-size: convert(2.5, ems, px); /* converted from ems */
+}
+
+.example4{
+  font-size: convert(234, percent, px); /* converted from percentage */
+}
